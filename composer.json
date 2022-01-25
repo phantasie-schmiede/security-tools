@@ -1,0 +1,50 @@
+{
+	"authors": [
+		{
+			"email": "dn@phantasie-schmiede.de",
+			"name": "Daniel Ablass",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"PSB\\PsbSecurity\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"PSB\\PsbSecurity\\Tests\\": "Tests/"
+		}
+	},
+	"config": {
+		"bin-dir": ".Build/bin",
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"description": "security enhancements for TYPO3-extensions",
+	"extra": {
+		"typo3/cms": {
+			"app-dir": ".Build",
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"extension-key": "psb_security",
+			"web-dir": ".Build/public"
+		}
+	},
+	"keywords": [
+		"configuration",
+		"development",
+		"extension",
+		"typo3"
+	],
+	"license": "GPL-2.0-or-later",
+	"name": "psb/psb-security",
+	"require": {
+		"php": "^7.4",
+		"psb/psb-foundation": "^1.0"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-latest",
+		"typo3/testing-framework": "^6.8"
+	},
+	"type": "typo3-cms-extension"
+}
