@@ -40,7 +40,7 @@
 	"name": "psb/psb-security",
 	"require": {
 		"php": "^7.4",
-		"psb/psb-foundation": "^1.0"
+		"psb/psb-foundation": "@dev"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest",
