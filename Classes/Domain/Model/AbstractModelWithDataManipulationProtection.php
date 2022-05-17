@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace PSB\PsbSecurity\Domain\Model;
 
-use PSB\PsbFoundation\Annotation\TCA\Input;
+use PSB\PsbFoundation\Annotation\TCA\Column\Input;
 use PSB\PsbFoundation\Utility\ObjectUtility;
 use PSB\PsbSecurity\Utility\SecurityUtility;
 use ReflectionException;
