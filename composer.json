@@ -39,8 +39,8 @@
 	"license": "GPL-2.0-or-later",
 	"name": "psb/psb-security",
 	"require": {
-		"php": "^7.4",
-		"psb/psb-foundation": "@dev"
+		"php": "^8.1",
+		"psb/psb-foundation": "^2.0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest",
