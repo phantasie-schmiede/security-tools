@@ -36,7 +36,7 @@ abstract class AbstractModelWithDataManipulationProtectionRepository extends Rep
     public function add($object): void
     {
         if ($object instanceof DataManipulationProtectionInterface) {
-            $object->calculateCheckSum(true);
+            $object->calculateChecksum(true);
         }
 
         parent::add($object);
@@ -51,7 +51,7 @@ abstract class AbstractModelWithDataManipulationProtectionRepository extends Rep
     public function update($modifiedObject): void
     {
         if ($modifiedObject instanceof DataManipulationProtectionInterface) {
-            $modifiedObject->calculateCheckSum(true);
+            $modifiedObject->calculateChecksum(true);
         }
 
         parent::update($modifiedObject);
