@@ -44,7 +44,7 @@
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest",
-		"typo3/testing-framework": "^6.8"
+		"typo3/testing-framework": "^8.2"
 	},
 	"type": "typo3-cms-extension"
 }
