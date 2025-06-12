@@ -2,31 +2,25 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS project.
+ * This file is part of PSBits Security.
  *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * The copyright and license information can be found in the file LICENSE.txt,
+ * which was distributed with this source code.
  */
 
-namespace PSB\PsbSecurity\Domain\Repository;
+namespace PSBits\Security\Domain\Repository;
 
-use PSB\PsbSecurity\Domain\Model\DataManipulationProtectionInterface;
+use PSBits\Security\Domain\Model\DataManipulationProtectionInterface;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * Class AbstractRepository
+ * Class AbstractProtectedRepository
  *
- * @package PSB\PsbSecurity\Domain\Repository
+ * @package PSBits\Security\Domain\Repository
  */
-abstract class AbstractModelWithDataManipulationProtectionRepository extends Repository
+abstract class AbstractProtectedRepository extends Repository
 {
     /**
      * @param object $object

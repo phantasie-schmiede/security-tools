@@ -8,12 +8,12 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"PSB\\PsbSecurity\\": "Classes/"
+			"PSBits\\Security\\": "Classes/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"PSB\\PsbSecurity\\Tests\\": "Tests/"
+			"PSBits\\Security\\Tests\\": "Tests/"
 		}
 	},
 	"config": {
@@ -21,12 +21,12 @@
 		"sort-packages": true,
 		"vendor-dir": ".Build/vendor"
 	},
-	"description": "security enhancements for TYPO3-extensions",
+	"description": "security enhancements for TYPO3 extensions",
 	"extra": {
 		"typo3/cms": {
 			"app-dir": ".Build",
 			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"extension-key": "psb_security",
+			"extension-key": "security",
 			"web-dir": ".Build/public"
 		}
 	},
@@ -36,10 +36,10 @@
 		"extension",
 		"typo3"
 	],
-	"license": "GPL-2.0-or-later",
-	"name": "psb/psb-security",
+	"license": "GPL-3.0-or-later",
+	"name": "psbits/security",
 	"require": {
-		"php": "^8.1",
+		"php": "^8.3",
 		"psb/psb-foundation": "^2.0"
 	},
 	"require-dev": {
