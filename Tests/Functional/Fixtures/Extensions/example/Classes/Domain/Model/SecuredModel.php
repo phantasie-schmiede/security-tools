@@ -8,16 +8,18 @@ declare(strict_types=1);
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Tests\Domain\Model;
+namespace PSBitsTest\Example\Domain\Model;
 
 use PSB\PsbFoundation\Attribute\TCA\ColumnType\Input;
+use PSB\PsbFoundation\Attribute\TCA\Ctrl;
 use PSBits\Security\Domain\Model\AbstractProtectedModel;
 
 /**
  * Class SecuredModel
  *
- * @package PSBits\Security\Tests\Domain\Model
+ * @package PSBitsTest\Example\Domain\Model
  */
+#[Ctrl]
 class SecuredModel extends AbstractProtectedModel
 {
     #[Input]

@@ -19,12 +19,15 @@
 	"config": {
 		"bin-dir": ".Build/bin",
 		"sort-packages": true,
-		"vendor-dir": ".Build/vendor"
+		"vendor-dir": ".Build/vendor",
+		"allow-plugins": {
+			"typo3/cms-composer-installers": true,
+			"typo3/class-alias-loader": true
+		}
 	},
 	"description": "security enhancements for TYPO3 extensions",
 	"extra": {
 		"typo3/cms": {
-			"app-dir": ".Build",
 			"cms-package-dir": "{$vendor-dir}/typo3/cms",
 			"extension-key": "security",
 			"web-dir": ".Build/public"
@@ -38,11 +41,19 @@
 	],
 	"license": "GPL-3.0-or-later",
 	"name": "psbits/security",
+	"repositories": [
+		{
+			"type": "path",
+			"url": "./Tests/Functional/Fixtures/Extensions/*"
+		}
+	],
 	"require": {
 		"php": "^8.3",
-		"psb/psb-foundation": "^2.0"
+		"psb/psb-foundation": "^2.0",
+		"typo3/cms-core": "^13.4"
 	},
 	"require-dev": {
+		"psbitstest/example": "@dev",
 		"roave/security-advisories": "dev-latest",
 		"typo3/testing-framework": "^8.2"
 	},

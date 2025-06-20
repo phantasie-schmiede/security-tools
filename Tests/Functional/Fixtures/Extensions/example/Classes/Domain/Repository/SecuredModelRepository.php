@@ -8,14 +8,14 @@ declare(strict_types=1);
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Tests\Domain\Repository;
+namespace PSBitsTest\Example\Domain\Repository;
 
 use PSBits\Security\Domain\Repository\AbstractProtectedRepository;
 
 /**
  * Class SecuredModelRepository
  *
- * @package PSBits\Security\Tests\Domain\Repository
+ * @package PSBitsTest\Example\Domain\Repository
  */
 class SecuredModelRepository extends AbstractProtectedRepository
 {

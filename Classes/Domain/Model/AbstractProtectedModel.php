@@ -16,7 +16,6 @@ use PSB\PsbFoundation\Utility\ObjectUtility;
 use PSBits\Security\Exception\CorruptedDataException;
 use PSBits\Security\Utility\SecurityUtility;
 use ReflectionException;
-use RuntimeException;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationException;
 
@@ -46,27 +45,21 @@ abstract class AbstractProtectedModel extends AbstractEntity implements DataMani
      * @throws InvalidArgumentForHashGenerationException
      * @throws ReflectionException
      */
-    public function __construct()
-    {
-        // Only validate properties if the model is being restored.
-        if (null !== $this->uid) {
-            $this->validateChecksum();
-        }
-    }
-
-    /**
-     * @throws InvalidArgumentForHashGenerationException
-     * @throws ReflectionException
-     */
     public function calculateChecksum(bool $store): string
     {
-        $checkSum = SecurityUtility::generateHash(serialize(ObjectUtility::toArray($this)));
+        $oldChecksum = $this->getChecksum();
+
+        // Don't take the current checksum into account when calculating a new one!
+        $this->setChecksum('');
+        $newCheckSum = SecurityUtility::generateHash(serialize(ObjectUtility::toArray($this)));
 
         if (true === $store) {
-            $this->setChecksum($checkSum);
+            $this->setChecksum($newCheckSum);
+        } else {
+            $this->setChecksum($oldChecksum);
         }
 
-        return $checkSum;
+        return $newCheckSum;
     }
 
     public function getChecksum(): string

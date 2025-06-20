@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace PSBits\Security\Domain\Repository;
 
 use PSBits\Security\Domain\Model\DataManipulationProtectionInterface;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -23,17 +24,24 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 abstract class AbstractProtectedRepository extends Repository
 {
     /**
-     * @param object $object
+     * @param AbstractEntity $object
      *
+     * @return void
      * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     public function add($object): void
     {
-        if ($object instanceof DataManipulationProtectionInterface) {
-            $object->calculateChecksum(true);
-        }
-
         parent::add($object);
+
+        if ($object instanceof DataManipulationProtectionInterface) {
+            /*
+             * First store the object to the persistence layer so that all properties like UID are available and
+             * then update the object with the calculated checksum.
+             */
+            $this->persistenceManager->persistAll();
+            $this->update($object);
+        }
     }
 
     /**
