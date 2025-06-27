@@ -4,6 +4,7 @@
 	"description": "A test extension for PSBits | Security",
 	"license": "GPL-3.0-or-later",
 	"require": {
+		"psbits/foundation": "^3.0",
 		"typo3/cms-core": "^13.4"
 	},
 	"extra": {

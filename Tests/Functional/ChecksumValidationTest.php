@@ -34,7 +34,7 @@ class ChecksumValidationTest extends FunctionalTestCase
     protected SecuredModelRepository $securedModelRepository;
 
     protected array $testExtensionsToLoad = [
-        'typo3conf/ext/psb/psb-foundation',
+        'typo3conf/ext/psbits/foundation',
         'typo3conf/ext/psbitstest/example',
     ];
 
