@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace PSBits\Security\Data;
 
-use PSB\PsbFoundation\Data\AbstractExtensionInformation;
+use PSBits\Foundation\Data\AbstractExtensionInformation;
 
 /**
  * Class ExtensionInformation

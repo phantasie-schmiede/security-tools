@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace PSBitsTest\Example\Data;
 
-use PSB\PsbFoundation\Data\AbstractExtensionInformation;
+use PSBits\Foundation\Data\AbstractExtensionInformation;
 
 /*
  * This file is part of PSBits Security.

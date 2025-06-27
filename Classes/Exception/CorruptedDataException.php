@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PSBits\Security\Exception;
 
-use PSB\PsbFoundation\Exceptions\BaseException;
+use PSBits\Foundation\Exceptions\BaseException;
 
 /**
  * Class CorruptedDataException

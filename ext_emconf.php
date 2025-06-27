@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 $EM_CONF[$_EXTKEY] = [
     'author'           => 'Daniel Ablass',
@@ -9,13 +8,14 @@ $EM_CONF[$_EXTKEY] = [
     'constraints'      => [
         'conflicts' => [],
         'depends'   => [
-            'php'            => '8.3',
-            'psb_foundation' => '2.0',
+            'foundation' => '3.0',
+            'php'        => '8.3',
+            'typo3'      => '13.4.0-13.4.99',
         ],
         'suggests'  => [],
     ],
     'description'      => 'security enhancements for TYPO3-extensions',
-    'state'            => 'stable',
+    'state'            => 'alpha',
     'title'            => 'PSBits | Security',
-    'version'          => '1.0.0',
+    'version'          => '0.1.0',
 ];

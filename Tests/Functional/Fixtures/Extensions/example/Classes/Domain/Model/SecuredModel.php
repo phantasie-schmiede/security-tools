@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace PSBitsTest\Example\Domain\Model;
 
-use PSB\PsbFoundation\Attribute\TCA\ColumnType\Input;
-use PSB\PsbFoundation\Attribute\TCA\Ctrl;
+use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
+use PSBits\Foundation\Attribute\TCA\Ctrl;
 use PSBits\Security\Domain\Model\AbstractProtectedModel;
 
 /**

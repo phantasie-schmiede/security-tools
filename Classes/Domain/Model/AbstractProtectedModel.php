@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace PSBits\Security\Domain\Model;
 
-use PSB\PsbFoundation\Attribute\TCA\Column;
-use PSB\PsbFoundation\Attribute\TCA\ColumnType\Input;
-use PSB\PsbFoundation\Utility\ObjectUtility;
+use PSBits\Foundation\Attribute\TCA\Column;
+use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
+use PSBits\Foundation\Utility\ObjectUtility;
 use PSBits\Security\Exception\CorruptedDataException;
 use PSBits\Security\Utility\SecurityUtility;
 use ReflectionException;
