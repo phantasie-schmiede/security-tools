@@ -30,6 +30,11 @@ class SecurityUtility
         return hash_hmac($algorithm, $string, self::getEncryptionKey());
     }
 
+    public static function generatePasswordHash(string $password): string
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
     /**
      * @throws InvalidArgumentForHashGenerationException
      */
@@ -45,5 +50,10 @@ class SecurityUtility
         }
 
         return $encryptionKey;
+    }
+
+    public static function verifyPassword(string $hash, string $password): bool
+    {
+        return password_verify($password, $hash);
     }
 }
