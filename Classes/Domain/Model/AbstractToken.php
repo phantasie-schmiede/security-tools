@@ -69,9 +69,14 @@ abstract class AbstractToken extends AbstractEntity
         return $this->validator;
     }
 
+    public function isExpired(): bool
+    {
+        return new \DateTime() > $this->expiresAt;
+    }
+
     public function validate(string $token): bool
     {
-        if (new \DateTime() > $this->expiresAt) {
+        if ($this->isExpired()) {
             return false;
         }
 

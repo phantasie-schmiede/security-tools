@@ -12,7 +12,6 @@ namespace PSBits\Security\Domain\Model;
 
 use PSBits\Foundation\Attribute\TCA\Column;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
-use PSBits\Foundation\Utility\ObjectUtility;
 use PSBits\Security\Exception\CorruptedDataException;
 use PSBits\Security\Utility\SecurityUtility;
 use ReflectionException;
@@ -27,11 +26,13 @@ use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationExcepti
  * If your repository extends the AbstractProtectedRepository, the checksum will be calculated and set automatically
  * when adding or updating a record of this model.
  *
- * Keep in mind that the checksum is calculated based on the serialized object and the encryption key of your TYPO3
- * installation. If you change the encryption key, add or remove properties, edit the record directly in the database or
- * update the model in your code without updating the checksum, the checksum will not match anymore and the model will
- * throw an exception when trying to access it! Provide UpgradeWizards when updating the database schema or the model to
- * recalculate the checksum for all existing records.
+ * Keep in mind that the checksum is calculated based on a canonical representation of the object (see
+ * \PSBits\Security\Utility\SecurityUtility::canonicalize()) and the encryption key of your TYPO3 installation. System
+ * metadata fields (pid, tstamp, crdate) are excluded, the record identity (uid) is included. If you change the
+ * encryption key, add or remove properties, edit the record directly in the database or update the model in your code
+ * without updating the checksum, the checksum will not match anymore and the model will throw an exception when trying
+ * to access it! Provide UpgradeWizards when updating the database schema or the model to recalculate the checksum for
+ * all existing records.
  *
  * @package PSBits\Security\Domain\Model
  */
@@ -49,17 +50,19 @@ abstract class AbstractProtectedModel extends AbstractEntity implements DataMani
     {
         $oldChecksum = $this->getChecksum();
 
-        // Don't take the current checksum into account when calculating a new one!
-        $this->setChecksum('');
-        $newCheckSum = SecurityUtility::generateHash(serialize(ObjectUtility::toArray($this)));
+        /*
+         * The "checksum" property itself is excluded from the canonical representation, so it does not need to be
+         * reset before calculating a new checksum.
+         */
+        $newChecksum = SecurityUtility::generateHash(SecurityUtility::canonicalize($this));
 
         if (true === $store) {
-            $this->setChecksum($newCheckSum);
+            $this->setChecksum($newChecksum);
         } else {
             $this->setChecksum($oldChecksum);
         }
 
-        return $newCheckSum;
+        return $newChecksum;
     }
 
     public function getChecksum(): string

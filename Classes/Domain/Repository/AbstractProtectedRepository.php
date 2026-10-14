@@ -34,14 +34,18 @@ abstract class AbstractProtectedRepository extends Repository
     {
         parent::add($object);
 
-        if ($object instanceof DataManipulationProtectionInterface) {
-            /*
-             * First store the object to the persistence layer so that all properties like UID are available and
-             * then update the object with the calculated checksum.
-             */
-            $this->persistenceManager->persistAll();
-            $this->update($object);
+        if (!$object instanceof DataManipulationProtectionInterface) {
+            return;
         }
+
+        /*
+         * The checksum is bound to the record identity (uid), which is only known after the object has been persisted
+         * for the first time. So the object is stored once to obtain the uid, the checksum is calculated and the object
+         * is stored again, so that the checksum is reliably persisted even if no further persistAll() is triggered.
+         */
+        $this->persistenceManager->persistAll();
+        $this->update($object);
+        $this->persistenceManager->persistAll();
     }
 
     /**

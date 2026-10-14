@@ -114,6 +114,59 @@ class ChecksumValidationTest extends FunctionalTestCase
         $this->securedModelRepository->findByIdentifier($newRecord->getUid());
     }
 
+    /**
+     * @throws IllegalObjectTypeException
+     * @throws NotImplementedException
+     * @throws UnknownObjectException
+     */
+    #[Test]
+    public function addWithoutFurtherPersistAllPersistsChecksum(): void
+    {
+        $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
+        $newRecord->setName('Test Record');
+
+        // add() must persist the checksum on its own, so no further persistAll() is triggered on purpose.
+        $this->securedModelRepository->add($newRecord);
+        $this->persistenceManager->clearState();
+
+        // Fetch the record again to check the checksum
+        /** @var SecuredModel $fetchedRecord */
+        $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+    }
+
+    /**
+     * @throws IllegalObjectTypeException
+     * @throws NotImplementedException
+     * @throws UnknownObjectException
+     */
+    #[Test]
+    public function changePidDirectlyInDatabaseDoesNotRaiseException(): void
+    {
+        $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
+        $newRecord->setName('Test Record');
+        $this->securedModelRepository->add($newRecord);
+        $this->persistenceManager->persistAll();
+        $this->persistenceManager->clearState();
+
+        // Simulate a page move by changing the pid directly in the database.
+        $queryBuilder = $this->getConnectionPool()
+            ->getQueryBuilderForTable('tx_example_domain_model_securedmodel');
+        $queryBuilder->update('tx_example_domain_model_securedmodel')
+            ->set('pid', 999)
+            ->where(
+                $queryBuilder->expr()
+                    ->eq(
+                        'uid',
+                        $queryBuilder->createNamedParameter($newRecord->getUid())
+                    )
+            )
+            ->executeStatement();
+
+        // The pid is excluded from the checksum, so the record must still be valid.
+        /** @var SecuredModel $fetchedRecord */
+        $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace PSBits\Security\EventListener;
 
 use PSBits\Security\Domain\Model\DataManipulationProtectionInterface;
+use PSBits\Security\Exception\CorruptedDataException;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent;
 
@@ -22,6 +24,14 @@ use TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent;
 #[AsEventListener(identifier: 'security/validate-checksum-after-object-thawed')]
 final readonly class ValidateChecksumAfterObjectThawed
 {
+    public function __construct(
+        private LoggerInterface $logger,
+    ) {
+    }
+
+    /**
+     * @throws CorruptedDataException
+     */
     public function __invoke(AfterObjectThawedEvent $event): void
     {
         $object = $event->getObject();
@@ -30,6 +40,14 @@ final readonly class ValidateChecksumAfterObjectThawed
             return;
         }
 
-        $object->validateChecksum();
+        try {
+            $object->validateChecksum();
+        } catch (CorruptedDataException $exception) {
+            $this->logger->error($exception->getMessage(), [
+                'object' => $object::class,
+            ]);
+
+            throw $exception;
+        }
     }
 }
