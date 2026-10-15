@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace PSBits\Security\Utility;
 
+use DateTimeImmutable;
 use DateTimeInterface;
-use DateTimeZone;
 use ReflectionClass;
 use ReflectionException;
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
@@ -110,6 +110,9 @@ class SecurityUtility
         return password_verify($password, $hash);
     }
 
+    /**
+     * @param iterable<mixed> $collection
+     */
     protected static function canonicalizeCollection(iterable $collection): string
     {
         $items = [];
@@ -125,8 +128,11 @@ class SecurityUtility
 
     protected static function canonicalizeDateTime(DateTimeInterface $dateTime): string
     {
-        $utc = clone $dateTime;
-        $utc->setTimezone(new DateTimeZone('UTC'));
+        /*
+         * DateTimeImmutable from a "@timestamp" is always in UTC, which works for both
+         * DateTime and DateTimeImmutable inputs (DateTimeInterface itself has no setTimezone()).
+         */
+        $utc = new DateTimeImmutable('@' . $dateTime->getTimestamp());
 
         return $utc->format('Y-m-d H:i:s');
     }

@@ -19,6 +19,8 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Class AbstractProtectedRepository
  *
+ * @template T of AbstractEntity
+ * @extends Repository<T>
  * @package PSBits\Security\Domain\Repository
  */
 abstract class AbstractProtectedRepository extends Repository

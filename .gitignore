@@ -4,7 +4,5 @@
 !/.idea/inspectionProfiles/
 /.php-cs-fixer.cache
 /Build/Quality/.phpstan/
+/Build/phpunit/.phpunit.cache/
 /composer.lock
-/node_modules/
-/package-lock.json
-/Build/testing-docker/.env

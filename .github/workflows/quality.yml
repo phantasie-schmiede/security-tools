@@ -21,6 +21,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
+          extensions: intl, mbstring, pdo_sqlite, sqlite3
           tools: composer:v2
 
       - name: Validate composer config
@@ -46,6 +47,12 @@ jobs:
 
       - name: YAML lint
         run: composer lint:yaml
+
+      - name: Unit tests
+        run: composer test:unit
+
+      - name: Functional tests
+        run: composer test:functional
 
   support-matrix:
     name: 'Dependency check TYPO3 ${{ matrix.typo3 }} / PHP ${{ matrix.php }}'

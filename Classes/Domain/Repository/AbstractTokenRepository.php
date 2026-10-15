@@ -12,6 +12,7 @@ namespace PSBits\Security\Domain\Repository;
 
 use Doctrine\DBAL\ParameterType;
 use PSBits\Foundation\Service\Configuration\TcaService;
+use PSBits\Security\Domain\Model\AbstractToken;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
@@ -28,6 +29,8 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  * Single use tokens should be removed right after a successful validation, e.g. by calling removeBySelector() with the
  * selector the token was looked up by.
  *
+ * @template T of AbstractToken
+ * @extends Repository<T>
  * @package PSBits\Security\Domain\Repository
  */
 abstract class AbstractTokenRepository extends Repository

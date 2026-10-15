@@ -55,10 +55,11 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95",
         "phpstan/phpstan": "^2.2",
+        "phpunit/phpunit": "^11.2.5",
         "psbitstest/example": "@dev",
         "roave/security-advisories": "dev-latest",
         "saschaegerer/phpstan-typo3": "^2.1",
-        "typo3/testing-framework": "^8.2"
+        "typo3/testing-framework": "^9.5"
     },
     "type": "typo3-cms-extension",
     "scripts": {
@@ -80,6 +81,17 @@
         "post-install-cmd": [
             "cp Build/GitHooks/pre-commit .git/hooks/pre-commit"
         ],
+        "qa": [
+            "@fix:all",
+            "@test:all"
+        ],
+        "test:all": [
+            "@lint:all",
+            "@test:unit",
+            "@test:functional"
+        ],
+        "test:functional": "php -d memory_limit=1G .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml",
+        "test:unit": "php -d memory_limit=1G .Build/bin/phpunit -c Build/phpunit/UnitTests.xml",
         "validate:composer": "composer validate --no-check-publish"
     }
 }
