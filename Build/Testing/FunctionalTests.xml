@@ -16,7 +16,7 @@
     beStrictAboutChangesToGlobalState="false"
     beStrictAboutOutputDuringTests="true"
     bootstrap="../../.Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTestsBootstrap.php"
-    cacheDirectory=".phpunit.cache"
+    cacheDirectory="../../.Build/.phpunit.cache"
     cacheResult="false"
     colors="true"
     displayDetailsOnTestsThatTriggerDeprecations="true"

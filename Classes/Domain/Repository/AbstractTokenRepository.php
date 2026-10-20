@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -44,7 +45,7 @@ abstract class AbstractTokenRepository extends Repository
      */
     public function removeBySelector(string $selector): void
     {
-        $tableName = $this->getTableName();
+        $tableName    = $this->getTableName();
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable($tableName);
 
@@ -70,7 +71,7 @@ abstract class AbstractTokenRepository extends Repository
      */
     public function removeExpired(): int
     {
-        $tableName = $this->getTableName();
+        $tableName    = $this->getTableName();
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable($tableName);
 

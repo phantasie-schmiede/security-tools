@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -18,6 +19,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationException;
 use UnitEnum;
+
 use function gettype;
 use function in_array;
 use function is_bool;
@@ -25,6 +27,7 @@ use function is_float;
 use function is_int;
 use function is_object;
 use function is_string;
+
 use const SORT_STRING;
 
 /**
@@ -142,7 +145,7 @@ class SecurityUtility
      */
     protected static function canonicalizeProperties(object $object, bool $topLevel): array
     {
-        $properties = [];
+        $properties      = [];
         $reflectionClass = new ReflectionClass($object);
 
         foreach ($reflectionClass->getProperties() as $property) {
@@ -209,16 +212,16 @@ class SecurityUtility
             ksort($properties);
 
             return 'o' . $value::class . '(' . implode(
-                    ';',
-                    array_map(
-                        static fn(
-                            string $propertyName,
-                            string $propertyValue,
-                        ): string => $propertyName . ':' . $propertyValue,
-                        array_keys($properties),
-                        $properties,
-                    ),
-                ) . ')';
+                ';',
+                array_map(
+                    static fn(
+                        string $propertyName,
+                        string $propertyValue,
+                    ): string => $propertyName . ':' . $propertyValue,
+                    array_keys($properties),
+                    $properties,
+                ),
+            ) . ')';
         }
 
         return gettype($value);

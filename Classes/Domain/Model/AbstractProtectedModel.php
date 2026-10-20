@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -85,7 +86,8 @@ abstract class AbstractProtectedModel extends AbstractEntity implements DataMani
         if (!hash_equals($this->getChecksum(), $this->calculateChecksum(false))) {
             throw new CorruptedDataException(
                 static::class . ': Checksum validation failed! The data of the record with UID ' . $this->getUid(
-                ) . ' has been manipulated!', 1582819384
+                ) . ' has been manipulated!',
+                1582819384
             );
         }
     }

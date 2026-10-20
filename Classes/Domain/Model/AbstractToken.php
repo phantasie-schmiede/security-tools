@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -44,8 +45,8 @@ abstract class AbstractToken extends AbstractEntity
     public function __construct(string $lifetime)
     {
         $this->expiresAt = new \DateTime('+' . $lifetime);
-        $this->rawToken = bin2hex(random_bytes(32));
-        $this->selector = bin2hex(random_bytes(16));
+        $this->rawToken  = bin2hex(random_bytes(32));
+        $this->selector  = bin2hex(random_bytes(16));
         $this->validator = SecurityUtility::generatePasswordHash($this->rawToken);
     }
 
