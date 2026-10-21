@@ -58,7 +58,7 @@
         "psbits/qa": "@dev",
         "psbitstest/example": "@dev",
         "roave/security-advisories": "dev-latest",
-        "saschaegerer/phpstan-typo3": "^2.1",
+        "saschaegerer/phpstan-typo3": "^3.0",
         "typo3/testing-framework": "^9.5"
     },
     "scripts": {

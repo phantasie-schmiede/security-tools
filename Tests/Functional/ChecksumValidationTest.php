@@ -53,7 +53,10 @@ class ChecksumValidationTest extends FunctionalTestCase
 
         // Fetch the record again to check the checksum
         /** @var SecuredModel $fetchedRecord */
-        $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+        $fetchedRecord = $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+
+        $this->assertSame('Test Record', $fetchedRecord->getName());
+        $this->assertNotEmpty($fetchedRecord->getChecksum());
     }
 
     /**
@@ -103,6 +106,7 @@ class ChecksumValidationTest extends FunctionalTestCase
         $newRecord->setName('Test Record');
         $this->securedModelRepository->add($newRecord);
         $this->persistenceManager->persistAll();
+        $initialChecksum = $newRecord->getChecksum();
 
         $newRecord->setName('Renamed Test Record ');
         $this->securedModelRepository->update($newRecord);
@@ -111,7 +115,10 @@ class ChecksumValidationTest extends FunctionalTestCase
 
         // Fetch the record again to check the checksum
         /** @var SecuredModel $fetchedRecord */
-        $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+        $fetchedRecord = $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+
+        $this->assertSame('Renamed Test Record ', $fetchedRecord->getName());
+        $this->assertNotSame($initialChecksum, $fetchedRecord->getChecksum());
     }
 
     /**
@@ -131,7 +138,10 @@ class ChecksumValidationTest extends FunctionalTestCase
 
         // Fetch the record again to check the checksum
         /** @var SecuredModel $fetchedRecord */
-        $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+        $fetchedRecord = $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+
+        $this->assertSame('Test Record', $fetchedRecord->getName());
+        $this->assertNotEmpty($fetchedRecord->getChecksum());
     }
 
     /**
@@ -164,7 +174,10 @@ class ChecksumValidationTest extends FunctionalTestCase
 
         // The pid is excluded from the checksum, so the record must still be valid.
         /** @var SecuredModel $fetchedRecord */
-        $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+        $fetchedRecord = $this->securedModelRepository->findByIdentifier($newRecord->getUid());
+
+        $this->assertSame(999, $fetchedRecord->getPid());
+        $this->assertSame('Test Record', $fetchedRecord->getName());
     }
 
     protected function setUp(): void
