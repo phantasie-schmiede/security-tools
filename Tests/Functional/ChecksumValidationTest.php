@@ -2,17 +2,17 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Tests\Functional;
+namespace PSBits\SecurityTools\Tests\Functional;
 
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
-use PSBits\Security\Exception\CorruptedDataException;
+use PSBits\SecurityTools\Exception\CorruptedDataException;
 use PSBitsTest\Example\Domain\Model\SecuredModel;
 use PSBitsTest\Example\Domain\Repository\SecuredModelRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,7 +25,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 /**
  * Class ChecksumValidationTest
  *
- * @package PSBits\Security\Tests\Functional
+ * @package PSBits\SecurityTools\Tests\Functional
  */
 #[IgnoreDeprecations]
 class ChecksumValidationTest extends FunctionalTestCase

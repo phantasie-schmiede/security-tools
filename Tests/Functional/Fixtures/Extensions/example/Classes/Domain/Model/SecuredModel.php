@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
@@ -12,7 +12,7 @@ namespace PSBitsTest\Example\Domain\Model;
 
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
 use PSBits\Foundation\Attribute\TCA\Ctrl;
-use PSBits\Security\Domain\Model\AbstractProtectedModel;
+use PSBits\SecurityTools\Domain\Model\AbstractProtectedModel;
 
 /**
  * Class SecuredModel

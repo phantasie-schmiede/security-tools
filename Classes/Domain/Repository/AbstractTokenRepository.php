@@ -3,17 +3,17 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Domain\Repository;
+namespace PSBits\SecurityTools\Domain\Repository;
 
 use Doctrine\DBAL\ParameterType;
 use PSBits\Foundation\Service\Configuration\TcaService;
-use PSBits\Security\Domain\Model\AbstractToken;
+use PSBits\SecurityTools\Domain\Model\AbstractToken;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
@@ -24,7 +24,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Class AbstractTokenRepository
  *
- * Base repository for tokens derived from \PSBits\Security\Domain\Model\AbstractToken. It offers bulk operations that
+ * Base repository for tokens derived from \PSBits\SecurityTools\Domain\Model\AbstractToken. It offers bulk operations that
  * are not efficiently expressible via the Extbase query API, most notably the cleanup of expired tokens.
  *
  * Single use tokens should be removed right after a successful validation, e.g. by calling removeBySelector() with the
@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  *
  * @template T of AbstractToken
  * @extends Repository<T>
- * @package PSBits\Security\Domain\Repository
+ * @package PSBits\SecurityTools\Domain\Repository
  */
 abstract class AbstractTokenRepository extends Repository
 {

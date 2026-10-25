@@ -2,18 +2,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Tests\Unit\EventListener;
+namespace PSBits\SecurityTools\Tests\Unit\EventListener;
 
-use PSBits\Security\EventListener\ValidateChecksumAfterObjectThawed;
-use PSBits\Security\Exception\CorruptedDataException;
-use PSBits\Security\Tests\Unit\Fixtures\ListenerSampleModel;
-use PSBits\Security\Tests\Unit\Fixtures\RelatedSample;
+use PSBits\SecurityTools\EventListener\ValidateChecksumAfterObjectThawed;
+use PSBits\SecurityTools\Exception\CorruptedDataException;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\ListenerSampleModel;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\RelatedSample;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -21,7 +21,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 /**
  * Class ValidateChecksumAfterObjectThawedTest
  *
- * @package PSBits\Security\Tests\Unit\EventListener
+ * @package PSBits\SecurityTools\Tests\Unit\EventListener
  */
 class ValidateChecksumAfterObjectThawedTest extends UnitTestCase
 {

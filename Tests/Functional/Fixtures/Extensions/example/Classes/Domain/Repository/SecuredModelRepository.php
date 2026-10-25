@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace PSBitsTest\Example\Domain\Repository;
 
-use PSBits\Security\Domain\Repository\AbstractProtectedRepository;
+use PSBits\SecurityTools\Domain\Repository\AbstractProtectedRepository;
 
 /**
  * Class SecuredModelRepository

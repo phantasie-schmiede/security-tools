@@ -1,4 +1,4 @@
-# PSBits Security
+# PSBits Security Tools
 
 - [What does it do?](#what-does-it-do)
 - [How it works](#how-it-works)
@@ -19,10 +19,10 @@ database, and bulk operations to clean up expired tokens.
 
 ### How it works
 
-Let your domain models extend the class `PSBits\Security\Domain\Model\AbstractProtectedModel` to protect their data from
+Let your domain models extend the class `PSBits\SecurityTools\Domain\Model\AbstractProtectedModel` to protect their data from
 unwanted manipulation. Remember to call the parent constructor in your model's constructor after initializing the
 properties, e.g. ObjectStorages! If your repository extends
-`PSBits\Security\Domain\Repository\AbstractProtectedRepository`, the checksum will be calculated and set automatically
+`PSBits\SecurityTools\Domain\Repository\AbstractProtectedRepository`, the checksum will be calculated and set automatically
 when adding or updating a record of this model. `add()` persists the checksum on its own, so a record added through the
 repository is always consistent even if no further `persistAll()` is triggered.
 
@@ -48,12 +48,12 @@ model to recalculate the checksum for all existing records.
 
 ### Tokens
 
-Let your token models extend `PSBits\Security\Domain\Model\AbstractToken`. A random token is generated, and only a
+Let your token models extend `PSBits\SecurityTools\Domain\Model\AbstractToken`. A random token is generated, and only a
 hashed validator (plus a selector and an expiration date) is persisted, so a leaked database does not expose the raw
 token. Use `validate()` to check a presented token; it returns `false` once the token has expired.
 
 For single use tokens, remove the token right after a successful validation. Let your token repository extend
-`PSBits\Security\Domain\Repository\AbstractTokenRepository` to get
+`PSBits\SecurityTools\Domain\Repository\AbstractTokenRepository` to get
 
 - `removeBySelector(string $selector)` to invalidate a token after it was used, and
 - `removeExpired(): int` to clean up all expired tokens (e.g. from a scheduled task).
@@ -61,5 +61,5 @@ For single use tokens, remove the token right after a successful validation. Let
 ### Auditing corrupted data
 
 Whenever the checksum validation fails, the event listener
-`PSBits\Security\EventListener\ValidateChecksumAfterObjectThawed` logs the incident (model class and record uid) before
+`PSBits\SecurityTools\EventListener\ValidateChecksumAfterObjectThawed` logs the incident (model class and record uid) before
 re-throwing the `CorruptedDataException`. This makes tampering visible in the TYPO3 log.

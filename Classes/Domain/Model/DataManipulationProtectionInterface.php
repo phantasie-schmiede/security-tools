@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Domain\Model;
+namespace PSBits\SecurityTools\Domain\Model;
 
 /**
  * Interface DataManipulationProtectionInterface
  *
- * @package PSBits\Security\Domain\Model
+ * @package PSBits\SecurityTools\Domain\Model
  */
 interface DataManipulationProtectionInterface
 {

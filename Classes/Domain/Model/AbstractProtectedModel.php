@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Domain\Model;
+namespace PSBits\SecurityTools\Domain\Model;
 
 use PSBits\Foundation\Attribute\TCA\Column;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
-use PSBits\Security\Exception\CorruptedDataException;
-use PSBits\Security\Utility\SecurityUtility;
+use PSBits\SecurityTools\Exception\CorruptedDataException;
+use PSBits\SecurityTools\Utility\SecurityUtility;
 use ReflectionException;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationException;
@@ -28,14 +28,14 @@ use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationExcepti
  * when adding or updating a record of this model.
  *
  * Keep in mind that the checksum is calculated based on a canonical representation of the object (see
- * \PSBits\Security\Utility\SecurityUtility::canonicalize()) and the encryption key of your TYPO3 installation. System
+ * \PSBits\SecurityTools\Utility\SecurityUtility::canonicalize()) and the encryption key of your TYPO3 installation. System
  * metadata fields (pid, tstamp, crdate) are excluded, the record identity (uid) is included. If you change the
  * encryption key, add or remove properties, edit the record directly in the database or update the model in your code
  * without updating the checksum, the checksum will not match anymore and the model will throw an exception when trying
  * to access it! Provide UpgradeWizards when updating the database schema or the model to recalculate the checksum for
  * all existing records.
  *
- * @package PSBits\Security\Domain\Model
+ * @package PSBits\SecurityTools\Domain\Model
  */
 abstract class AbstractProtectedModel extends AbstractEntity implements DataManipulationProtectionInterface
 {

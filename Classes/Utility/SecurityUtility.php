@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Utility;
+namespace PSBits\SecurityTools\Utility;
 
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -36,7 +36,7 @@ use const SORT_STRING;
  * The class \TYPO3\CMS\Extbase\Security\Cryptography\HashService offers almost the same functionality, but is marked as
  * internal and uses the rather vulnerable sha1 algorithm.
  *
- * @package PSBits\Security\Utility
+ * @package PSBits\SecurityTools\Utility
  */
 class SecurityUtility
 {

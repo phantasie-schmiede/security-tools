@@ -3,25 +3,25 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Domain\Model;
+namespace PSBits\SecurityTools\Domain\Model;
 
 use DateMalformedStringException;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Datetime;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
-use PSBits\Security\Utility\SecurityUtility;
+use PSBits\SecurityTools\Utility\SecurityUtility;
 use Random\RandomException;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * Class AbstractToken
  *
- * @package PSBits\Security\Domain\Model
+ * @package PSBits\SecurityTools\Domain\Model
  */
 abstract class AbstractToken extends AbstractEntity
 {

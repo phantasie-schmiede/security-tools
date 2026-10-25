@@ -1,7 +1,7 @@
 {
 	"name": "psbitstest/example",
 	"type": "typo3-cms-extension",
-	"description": "A test extension for PSBits | Security",
+	"description": "A test extension for PSBits | Security Tools",
 	"license": "GPL-3.0-or-later",
 	"require": {
 		"psbits/foundation": "^4.0",

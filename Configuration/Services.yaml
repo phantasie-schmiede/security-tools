@@ -4,5 +4,5 @@ services:
     autowire: true
     public: false
 
-  PSBits\Security\:
+  PSBits\SecurityTools\:
     resource: '../Classes/*'

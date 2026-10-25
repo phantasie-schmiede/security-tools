@@ -2,30 +2,30 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Tests\Unit\Utility;
+namespace PSBits\SecurityTools\Tests\Unit\Utility;
 
 use DateMalformedStringException;
 use DateTime;
 use DateTimeZone;
-use PSBits\Security\Tests\Unit\Fixtures\CanonicalizeSample;
-use PSBits\Security\Tests\Unit\Fixtures\OrderSampleA;
-use PSBits\Security\Tests\Unit\Fixtures\OrderSampleB;
-use PSBits\Security\Tests\Unit\Fixtures\ProtectedSample;
-use PSBits\Security\Tests\Unit\Fixtures\RelatedSample;
-use PSBits\Security\Utility\SecurityUtility;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\CanonicalizeSample;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\OrderSampleA;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\OrderSampleB;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\ProtectedSample;
+use PSBits\SecurityTools\Tests\Unit\Fixtures\RelatedSample;
+use PSBits\SecurityTools\Utility\SecurityUtility;
 use ReflectionException;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * Class SecurityUtilityTest
  *
- * @package PSBits\Security\Tests\Unit\Utility
+ * @package PSBits\SecurityTools\Tests\Unit\Utility
  */
 class SecurityUtilityTest extends UnitTestCase
 {

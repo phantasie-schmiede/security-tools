@@ -14,8 +14,8 @@ $EM_CONF[$_EXTKEY] = [
         ],
         'suggests'  => [],
     ],
-    'description'      => 'security enhancements for TYPO3-extensions',
+    'description'      => 'security tools for TYPO3 extensions',
     'state'            => 'alpha',
-    'title'            => 'PSBits | Security',
+    'title'            => 'PSBits | Security Tools',
     'version'          => '0.1.0',
 ];

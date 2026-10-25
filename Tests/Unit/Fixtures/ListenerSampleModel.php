@@ -2,23 +2,23 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Tests\Unit\Fixtures;
+namespace PSBits\SecurityTools\Tests\Unit\Fixtures;
 
-use PSBits\Security\Domain\Model\AbstractProtectedModel;
-use PSBits\Security\Exception\CorruptedDataException;
+use PSBits\SecurityTools\Domain\Model\AbstractProtectedModel;
+use PSBits\SecurityTools\Exception\CorruptedDataException;
 
 /**
  * Class ListenerSampleModel
  *
  * A protected model whose validateChecksum() can be forced to throw, simulating a corrupted record.
  *
- * @package PSBits\Security\Tests\Unit\Fixtures
+ * @package PSBits\SecurityTools\Tests\Unit\Fixtures
  */
 class ListenerSampleModel extends AbstractProtectedModel
 {

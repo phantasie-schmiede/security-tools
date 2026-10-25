@@ -8,12 +8,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "PSBits\\Security\\": "Classes/"
+            "PSBits\\SecurityTools\\": "Classes/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PSBits\\Security\\Tests\\": "Tests/"
+            "PSBits\\SecurityTools\\Tests\\": "Tests/"
         }
     },
     "config": {
@@ -25,10 +25,10 @@
         "sort-packages": true,
         "vendor-dir": ".Build/vendor"
     },
-    "description": "security enhancements for TYPO3 extensions",
+    "description": "security tools for TYPO3 extensions",
     "extra": {
         "typo3/cms": {
-            "extension-key": "security",
+            "extension-key": "security_tools",
             "web-dir": ".Build/public"
         }
     },
@@ -39,7 +39,7 @@
         "typo3"
     ],
     "license": "GPL-3.0-or-later",
-    "name": "psbits/security",
+    "name": "psbits/security_tools",
     "repositories": [
         {
             "type": "path",

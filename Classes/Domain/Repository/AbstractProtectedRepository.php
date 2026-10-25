@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Security.
+ * This file is part of PSBits Security Tools.
  *
  * The copyright and license information can be found in the file LICENSE.txt,
  * which was distributed with this source code.
  */
 
-namespace PSBits\Security\Domain\Repository;
+namespace PSBits\SecurityTools\Domain\Repository;
 
-use PSBits\Security\Domain\Model\DataManipulationProtectionInterface;
+use PSBits\SecurityTools\Domain\Model\DataManipulationProtectionInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  *
  * @template T of AbstractEntity
  * @extends Repository<T>
- * @package PSBits\Security\Domain\Repository
+ * @package PSBits\SecurityTools\Domain\Repository
  */
 abstract class AbstractProtectedRepository extends Repository
 {
