@@ -39,7 +39,7 @@
         "typo3"
     ],
     "license": "GPL-3.0-or-later",
-    "name": "psbits/security_tools",
+    "name": "psbits/security-tools",
     "repositories": [
         {
             "type": "path",
