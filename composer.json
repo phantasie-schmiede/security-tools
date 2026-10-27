@@ -44,6 +44,10 @@
         {
             "type": "path",
             "url": "./Tests/Functional/Fixtures/Extensions/*"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phantasie-schmiede/qa.git"
         }
     ],
     "require": {
@@ -55,7 +59,7 @@
         "friendsofphp/php-cs-fixer": "^3.95",
         "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^11",
-        "psbits/qa": "@dev",
+        "psbits/qa": "0.x.*@dev",
         "psbitstest/example": "@dev",
         "roave/security-advisories": "dev-latest",
         "saschaegerer/phpstan-typo3": "^3.0",

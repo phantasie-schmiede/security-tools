@@ -12,6 +12,7 @@ namespace PSBits\SecurityTools\Tests\Functional;
 
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
+use PSBits\Qa\Testing\Support\PersistenceSupportTrait;
 use PSBits\SecurityTools\Exception\CorruptedDataException;
 use PSBitsTest\Example\Domain\Model\SecuredModel;
 use PSBitsTest\Example\Domain\Repository\SecuredModelRepository;
@@ -19,7 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Exception\NotImplementedException;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -30,7 +30,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 #[IgnoreDeprecations]
 class ChecksumValidationTest extends FunctionalTestCase
 {
-    protected PersistenceManager     $persistenceManager;
+    use PersistenceSupportTrait;
+
     protected SecuredModelRepository $securedModelRepository;
 
     protected array $testExtensionsToLoad = [
@@ -48,8 +49,7 @@ class ChecksumValidationTest extends FunctionalTestCase
         $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
         $newRecord->setName('Test Record');
         $this->securedModelRepository->add($newRecord);
-        $this->persistenceManager->persistAll();
-        $this->persistenceManager->clearState();
+        $this->persistAll();
 
         // Fetch the record again to check the checksum
         /** @var SecuredModel $fetchedRecord */
@@ -69,8 +69,7 @@ class ChecksumValidationTest extends FunctionalTestCase
         $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
         $newRecord->setName('Test Record');
         $this->securedModelRepository->add($newRecord);
-        $this->persistenceManager->persistAll();
-        $this->persistenceManager->clearState();
+        $this->persistAll();
 
         // Directly update the record in the database
         $queryBuilder = $this->getConnectionPool()
@@ -105,13 +104,11 @@ class ChecksumValidationTest extends FunctionalTestCase
         $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
         $newRecord->setName('Test Record');
         $this->securedModelRepository->add($newRecord);
-        $this->persistenceManager->persistAll();
         $initialChecksum = $newRecord->getChecksum();
 
         $newRecord->setName('Renamed Test Record ');
         $this->securedModelRepository->update($newRecord);
-        $this->persistenceManager->persistAll();
-        $this->persistenceManager->clearState();
+        $this->persistAll();
 
         // Fetch the record again to check the checksum
         /** @var SecuredModel $fetchedRecord */
@@ -132,9 +129,9 @@ class ChecksumValidationTest extends FunctionalTestCase
         $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
         $newRecord->setName('Test Record');
 
-        // add() must persist the checksum on its own, so no further persistAll() is triggered on purpose.
+        // add() must persist the checksum on its own; the cleared state forces the record to be fetched from the database.
         $this->securedModelRepository->add($newRecord);
-        $this->persistenceManager->clearState();
+        $this->persistAll();
 
         // Fetch the record again to check the checksum
         /** @var SecuredModel $fetchedRecord */
@@ -155,8 +152,7 @@ class ChecksumValidationTest extends FunctionalTestCase
         $newRecord = GeneralUtility::makeInstance(SecuredModel::class);
         $newRecord->setName('Test Record');
         $this->securedModelRepository->add($newRecord);
-        $this->persistenceManager->persistAll();
-        $this->persistenceManager->clearState();
+        $this->persistAll();
 
         // Simulate a page move by changing the pid directly in the database.
         $queryBuilder = $this->getConnectionPool()
@@ -184,7 +180,6 @@ class ChecksumValidationTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->persistenceManager = $this->get(PersistenceManager::class);
         $this->securedModelRepository = $this->get(SecuredModelRepository::class);
     }
 }
